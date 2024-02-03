@@ -13,14 +13,15 @@ const NavBar = () => {
       <Navbar.Brand href='/' style={{ marginLeft: '0.5rem' }}>
         Waiter.app
       </Navbar.Brand>
-      <Navbar.Toggle aria-controls='responsive-navbar-nav' />
-      <Navbar.Collapse id='responsive-navbar-nav'>
-        <Nav className='ms-auto'>
-          <Nav.Link as={NavLink} to='/' style={{ marginLeft: 'auto' }}>
-            Home
-          </Nav.Link>
-        </Nav>
-      </Navbar.Collapse>
+      <Nav className='ms-auto'>
+        <Nav.Link
+          as={NavLink}
+          to='/'
+          style={{ marginLeft: 'auto', marginRight: '0.5rem' }}
+        >
+          Home
+        </Nav.Link>
+      </Nav>
     </Navbar>
   );
 };
