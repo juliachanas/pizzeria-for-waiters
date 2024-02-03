@@ -7,36 +7,25 @@ import Footer from './components/views/Footer/Footer';
 import Homepage from './components/pages/Homepage/HomePage';
 import TablePage from './components/pages/TablePage/TablePage';
 import NotFound from './components/pages/NotFound/NotFound';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { fetchTables } from './redux/tablesRedux';
+// import { useDispatch } from 'react-redux';
+// import { useEffect } from 'react';
+// import { fetchTables } from './redux/tablesRedux';
 
 const App = () => {
-  const dispatch = useDispatch();
-  const tables = useSelector((state) => state.tables); // Pobieramy stan tabel z Redux Store
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    // Wysyłamy żądanie pobrania tabel po zamontowaniu komponentu App
-    dispatch(fetchTables());
-  }, [dispatch]);
-
-  // Sprawdzamy, czy dane zostały już pobrane
-  const isDataLoaded = tables.length > 0;
+  // useEffect(() => dispatch(fetchTables()), [dispatch]);
 
   return (
     <Provider store={store}>
       <BrowserRouter>
         <Container>
           <Header />
-          {isDataLoaded ? ( // Renderujemy zawartość tylko gdy dane są załadowane
-            <Routes>
-              <Route path='/' element={<Homepage />} />
-              <Route path='/table/:id' element={<TablePage />} />
-              <Route path='*' element={<NotFound />} />
-            </Routes>
-          ) : (
-            <p>Loading...</p> // Komunikat ładowania, można dostosować do potrzeb
-          )}
+          <Routes>
+            <Route path='/' element={<Homepage />} />
+            <Route path='/table/:id' element={<TablePage />} />
+            <Route path='*' element={<NotFound />} />
+          </Routes>
           <Footer />
         </Container>
       </BrowserRouter>
