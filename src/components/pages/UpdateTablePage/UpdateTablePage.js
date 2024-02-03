@@ -1,7 +1,7 @@
-import TableForm from '../../features/TableForm/TableForm';
+import UpdateTableForm from '../../features/UpdateTableForm/UpdateTableForm';
 
 const UpdateTablePage = () => {
-  return <TableForm />;
+  return <UpdateTableForm />;
 };
 
 export default UpdateTablePage;

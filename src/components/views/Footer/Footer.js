@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
     <footer className='text-center text-muted'>
-      <p>Copyright © PizzeriaApp 2024</p>
+      <p style={{ marginTop: '16px' }}>Copyright © PizzeriaApp 2024</p>
     </footer>
   );
 };

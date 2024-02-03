@@ -12,7 +12,7 @@ const initialState = {
       status: 'Free',
       peopleAmount: 0,
       maxPeopleAmount: 3,
-      bill: 0,
+      bill: 20,
     },
     {
       id: '3',
