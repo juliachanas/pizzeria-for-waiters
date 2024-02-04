@@ -4,12 +4,15 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { fetchUpdateTable } from '../../../redux/tablesRedux';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { Spinner } from 'react-bootstrap';
 
 const TableForm = ({ ...props }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const { error, loading } = useSelector(({ tables }) => tables.requestStatus);
 
   const [status, setStatus] = useState(props.status || '');
   console.log(status);
@@ -56,6 +59,7 @@ const TableForm = ({ ...props }) => {
     navigate('/');
   };
 
+  if (loading && !error) return <Spinner />;
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group as={Row} className='mb-3'>

@@ -1,4 +1,4 @@
-import UpdateTableForm from '../../features/UpdateTableForm/UpdateTableForm';
+import UpdateTableForm from '../../features/TableForm/UpdateTableForm';
 
 const UpdateTablePage = () => {
   return <UpdateTableForm />;

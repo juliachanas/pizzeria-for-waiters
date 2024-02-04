@@ -1,5 +1,7 @@
+import { initialTableState } from './tablesRedux';
+
 const initialState = {
-  tables: [],
+  tables: initialTableState,
 };
 
 export default initialState;
