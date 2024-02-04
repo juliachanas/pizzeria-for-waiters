@@ -15,18 +15,11 @@ const TableForm = ({ ...props }) => {
   const { error, loading } = useSelector(({ tables }) => tables.requestStatus);
 
   const [status, setStatus] = useState(props.status || '');
-  console.log(status);
-
   const [peopleAmount, setPeopleAmount] = useState(props.peopleAmount || '0');
-  console.log(peopleAmount);
-
   const [maxPeopleAmount, setMaxPeopleAmount] = useState(
     props.maxPeopleAmount || '0'
   );
-  console.log(maxPeopleAmount);
-
   const [bill, setBill] = useState(props.bill || '0');
-  console.log(bill);
 
   useEffect(() => {
     if (status === 'Cleaning' || status === 'Free' || status === 'Reserved') {
