@@ -3,9 +3,14 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { updateTable } from '../../../redux/tablesRedux';
+import { fetchUpdateTable } from '../../../redux/tablesRedux';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const TableForm = ({ ...props }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [status, setStatus] = useState(props.status || '');
   console.log(status);
 
@@ -21,8 +26,9 @@ const TableForm = ({ ...props }) => {
   console.log(bill);
 
   useEffect(() => {
-    if (status === 'Cleaning' || status === 'Free') {
+    if (status === 'Cleaning' || status === 'Free' || status === 'Reserved') {
       setPeopleAmount('0');
+      setBill('0');
     }
 
     if (maxPeopleAmount > 10) {
@@ -31,16 +37,23 @@ const TableForm = ({ ...props }) => {
     if (peopleAmount > maxPeopleAmount) {
       setPeopleAmount(maxPeopleAmount);
     }
-  }, [status, peopleAmount, maxPeopleAmount]);
+    if (status === 'Busy' && props.status !== 'Busy') {
+      setBill('0');
+    }
+  }, [status, peopleAmount, maxPeopleAmount, props.status]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateTable({
-      status: status,
-      peopleAmount: peopleAmount,
-      maxPeopleAmount: maxPeopleAmount,
-      bill: bill,
-    });
+    dispatch(
+      fetchUpdateTable({
+        id: props.id,
+        status: status,
+        peopleAmount: peopleAmount,
+        maxPeopleAmount: maxPeopleAmount,
+        bill: bill,
+      })
+    );
+    navigate('/');
   };
 
   return (
